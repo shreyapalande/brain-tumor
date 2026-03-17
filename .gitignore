@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# PyTorch
+*.pt
+*.pth
+
+# Logs and checkpoints
+*.log
+checkpoints/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Dataset and scratch outputs
+data_npy/
+*.npz
+
+# Compiled files
+*.so
+*.dylib
+
+# Tester outputs
+coverage.xml
+htmlcov/
