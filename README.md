@@ -5,7 +5,6 @@ This repository contains three variants of 3D Attention U-Net for BraTS-style tu
 ## Project structure
 
 - `attn_net_m1/` - Attention U-Net with one CBAM module at the bottleneck (`enc5`).
-- `attn_net_m1_boundary/` - boundary fine-tuning wrapper that reuses `attn_net_m1` modules.
 - `attn_net_m2/` - Attention U-Net with CBAM at encoder levels `enc2`, `enc3`, `enc4`.
 - `attn_net_m3/` - Attention U-Net with CBAM at decoder levels with aliasing for boundary loss.
 
@@ -43,13 +42,7 @@ The `finetune.py` scripts use boundary-augmented cross-entropy and SA discrimina
     ```bash
     python -m github.attn_net_m2.finetune --checkpoint_path <model.pth> --save_dir <out>
     ```
-4. Test/evaluation:
+4. Test/evaluation (original or finetuned):
     ```bash
-    python -m github.attn_net_m2.test --model_path <best_model.pth>
+    python -m github.attn_net_m2.test --model_path <model_or_finetuned.pth>
     ```
-
-## Notes
-
-- The code uses mixed precision (`autocast`, `GradScaler`) in fine-tuning.
-- The boundary-aware criterion computes boundary masks at attention resolutions using nearest neighbor downsampling and erosion.
-- For m3, `dec1` CBAM is intentionally not supervised in boundary discrimination due to high-resolution noisy gradients.
